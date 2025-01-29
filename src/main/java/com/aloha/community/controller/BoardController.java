@@ -74,6 +74,7 @@ public class BoardController {
     */
     @PostMapping("/insert")
     public String insertPost(Board board) throws Exception{
+        log.info("board: " + board); // 파일첨부가 된 게시글을 등록하는 순간, 터미널에 로고 찍히면서 그 안에 파일들 아이디도 같이 전달되는 것을 확인할 수 있다.
         int result = boardService.insert(board);
         if(result>0){
             return "redirect:/board/list";
