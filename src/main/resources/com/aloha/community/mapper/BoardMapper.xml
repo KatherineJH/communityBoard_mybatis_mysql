@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace="매퍼 인터페이스 경로" --> 
+<mapper namespace="com.aloha.community.mapper.BoardMapper">
+
+    <!-- 목록 -->
+    <!-- 경로 생략 가능. application.properties 파일에서 이미 지정 해놨기 때문.  -->
+    <select id="list" resultType="Board">
+        SELECT * FROM board
+    </select>
+    <!-- 조회 -->
+    <select id="select" resultType="Board">
+        SELECT * FROM board
+        WHERE id = #{id}
+    </select>
+    <!-- 등록 -->
+    <insert id="insert">
+        INSERT INTO board(id, title, writer, content)
+        VALUES(#{id}, #{title}, #{writer}, #{content}) 
+    </insert>
+    <!-- 수정 -->
+    <update id="update">
+        UPDATE board
+        SET 
+            title = #{title}, 
+            writer = #{writer}, 
+            content = #{content},
+            updated_at = now()
+        WHERE id = #{id}    
+    </update>
+    <!-- 삭제 -->
+    <delete id="delete">
+        DELETE FROM board
+        WHERE id = #{id}    
+    </delete>
+
+</mapper>
